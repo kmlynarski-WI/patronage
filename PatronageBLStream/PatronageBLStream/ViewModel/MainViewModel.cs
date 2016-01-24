@@ -22,13 +22,14 @@ namespace PatronageBLStream.ViewModel
         private int _bitmapCount;
         private List<string> _path; 
         private BitmapImage _bitmapImageSource;
-        private readonly List<BitmapImage> _bitmapList; 
+        private readonly List<BitmapImage> _bitmapList;
 
         public MainViewModel()
         {
             _bitmapCount = 0;
             _path = new List<string>();
             _bitmapList = new List<BitmapImage>();
+
             InitializeGallery();
         }
 
@@ -54,14 +55,14 @@ namespace PatronageBLStream.ViewModel
                 {
                     BitmapImageSource = _bitmapList[_bitmapCount];
                 }
-            }
+        }
             catch (Exception ex)
             {
                 MessageDialog message = new MessageDialog(ex.Message);
-                await message.ShowAsync();
-            }
+        await message.ShowAsync();
+    }
 
-        }
+}
 
         public BitmapImage BitmapImageSource
         {
