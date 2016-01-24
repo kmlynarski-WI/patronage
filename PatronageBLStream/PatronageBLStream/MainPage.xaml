@@ -7,7 +7,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <Binding Source="{StaticResource Locator}" Path="Main" />
+    </Page.DataContext>
 
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53*" MinHeight="35" />
+            <RowDefinition x:Name="MainGridRow" Height="547*"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="ImagePanel" Grid.Column="1" Grid.Row="1">
+            <Image x:Name="Image" Source="{Binding BitmapImageSource, UpdateSourceTrigger=PropertyChanged}" Stretch="Uniform" />
+        </StackPanel>
     </Grid>
 </Page>
+    

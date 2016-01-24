@@ -4,5 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PatronageBLStream"
     RequestedTheme="Light">
+    
+    <Application.Resources>
+        <vm:ViewModelLocator xmlns:vm="using:PatronageBLStream.ViewModel"
+                                    x:Key="Locator" />
+    </Application.Resources>
 
 </Application>
