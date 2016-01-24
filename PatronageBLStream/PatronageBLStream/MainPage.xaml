@@ -11,14 +11,77 @@
         <Binding Source="{StaticResource Locator}" Path="Main" />
     </Page.DataContext>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="LayoutRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="53*" MinHeight="35" />
-            <RowDefinition x:Name="MainGridRow" Height="547*"/>
+            <RowDefinition x:Name="Header" Height="57*" MinHeight="35" />
+            <RowDefinition x:Name="MainGridRow" Height="483*"/>
+            <RowDefinition x:Name="Propertiese" Height="100*"/>
         </Grid.RowDefinitions>
-        <StackPanel x:Name="ImagePanel" Grid.Column="1" Grid.Row="1">
-            <Image x:Name="Image" Source="{Binding BitmapImageSource, UpdateSourceTrigger=PropertyChanged}" Stretch="Uniform" />
+
+        <StackPanel x:Name="MenuPanel" Grid.Row="0">
+
         </StackPanel>
+
+        <StackPanel x:Name="ImagePanel" Grid.Row="1" Margin="0,0.333,0,0">
+            <Button x:Name="SwitchImage" Command="{Binding GetNextImageCommand}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <Image x:Name="Image" Source="{Binding BitmapImageSource, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" />
+            </Button>
+        </StackPanel>
+
+        <StackPanel x:Name="PropertiesePanel" Grid.Row="2" Margin="0,0.333,0,0">
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding ImagePropertiesesText, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="VisualStateDesktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    
+                    <VisualState.Setters>
+                        <Setter Target="MenuPanel.(Grid.Row)" Value="0" />
+                        <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
+                        <Setter Target="ImagePanel.(Grid.Row)" Value="1"/>
+                        <Setter Target="ImagePanel.(Grid.Column)" Value="0"/>
+                        <Setter Target="ImagePanel.Orientation" Value="Vertical"/>
+                        <Setter Target="Image.Stretch" Value="Fill"/>
+                        <Setter Target="LayoutRoot.Background" Value="Orange"/>
+                    </VisualState.Setters>
+                </VisualState>
+                
+                <VisualState x:Name="VisualStateTablet">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" ></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    
+                    <VisualState.Setters>
+                        <Setter Target="MenuPanel.(Grid.Row)" Value="0" />
+                        <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
+                        <Setter Target="ImagePanel.(Grid.Row)" Value="1"/>
+                        <Setter Target="ImagePanel.(Grid.Column)" Value="0"/>
+                        <Setter Target="ImagePanel.Orientation" Value="Horizontal"/>
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="VisualStatePhone">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    
+                    <VisualState.Setters>
+                        <Setter Target="MenuPanel.(Grid.Row)" Value="0"/>
+                        <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
+                        <Setter Target="ImagePanel.(Grid.Row)" Value="1"/>
+                        <Setter Target="ImagePanel.(Grid.Column)" Value="0"/>
+                        <Setter Target="ImagePanel.Orientation" Value="Vertical"/>
+                    </VisualState.Setters>
+                </VisualState>
+
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
     </Grid>
 </Page>
     
