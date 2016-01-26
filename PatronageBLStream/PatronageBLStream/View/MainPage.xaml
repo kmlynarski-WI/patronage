@@ -11,7 +11,7 @@
         <Binding Source="{StaticResource Locator}" Path="Main" />
     </Page.DataContext>
 
-    <Grid x:Name="LayoutRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="LayoutRoot" Background="Orange">
 
         <Grid.RowDefinitions>
             <RowDefinition x:Name="Header" Height="57*" MinHeight="35" />
@@ -19,27 +19,35 @@
             <RowDefinition x:Name="Propertiese" Height="100*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="MenuPanel" Grid.Row="0">
-
+        <StackPanel x:Name="MenuPanel" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="TakePhoto" Command="{Binding TakePhotoCommand}" HorizontalAlignment="Left" Background="Orange">
+                <Image x:Name="PhotoCamera" Source="../Assets/Pictures.png"/>
+            </Button>
+            <Button x:Name="PhotoListView" Command="{Binding PhotoListViewCommand}" HorizontalAlignment="Left" Background="Orange">
+                <Image x:Name="PhotoList" Source="../Assets/Library.png"/>
+            </Button>
+            <Button x:Name="SharePhoto" Command="{Binding SharePhotoCommand}" HorizontalAlignment="Left" Background="Orange">
+                <Image x:Name="Share" Source="../Assets/Share.png"/>
+            </Button>
         </StackPanel>
-
-        <StackPanel x:Name="ImagePanel" Grid.Row="1" Margin="0,0.333,0,0">
-            <Button x:Name="SwitchImage" Command="{Binding GetNextImageCommand}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        
+        <StackPanel x:Name="ImagePanel" Grid.Row="1">
+            <Button x:Name="SwitchImage" Command="{Binding GetNextImageCommand}" Background="Orange">
                 <Image x:Name="Image" Source="{Binding BitmapImageSource, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" />
             </Button>
         </StackPanel>
 
-        <StackPanel x:Name="PropertiesePanel" Grid.Row="2" Margin="0,0.333,0,0">
-            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding ImagePropertiesesText, UpdateSourceTrigger=PropertyChanged}"/>
+        <StackPanel x:Name="PropertiesePanel" Grid.Row="2" Margin="0,0.333,0,0" VerticalAlignment="Top">
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding ImagePropertiesesText, UpdateSourceTrigger=PropertyChanged}" Height="100"/>
         </StackPanel>
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="VisualStateDesktop">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="800"></AdaptiveTrigger>
+                        <AdaptiveTrigger MinWindowWidth="720"></AdaptiveTrigger>
                     </VisualState.StateTriggers>
-                    
+
                     <VisualState.Setters>
                         <Setter Target="MenuPanel.(Grid.Row)" Value="0" />
                         <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
@@ -47,15 +55,14 @@
                         <Setter Target="ImagePanel.(Grid.Column)" Value="0"/>
                         <Setter Target="ImagePanel.Orientation" Value="Vertical"/>
                         <Setter Target="Image.Stretch" Value="Fill"/>
-                        <Setter Target="LayoutRoot.Background" Value="Orange"/>
                     </VisualState.Setters>
                 </VisualState>
-                
+
                 <VisualState x:Name="VisualStateTablet">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="600" ></AdaptiveTrigger>
+                        <AdaptiveTrigger MinWindowWidth="548" ></AdaptiveTrigger>
                     </VisualState.StateTriggers>
-                    
+
                     <VisualState.Setters>
                         <Setter Target="MenuPanel.(Grid.Row)" Value="0" />
                         <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
@@ -69,11 +76,11 @@
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
                     </VisualState.StateTriggers>
-                    
+
                     <VisualState.Setters>
                         <Setter Target="MenuPanel.(Grid.Row)" Value="0"/>
                         <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
-                        <Setter Target="ImagePanel.(Grid.Row)" Value="1"/>
+                        <Setter Target="ImagePanel.(Grid.Row)" Value="0"/>
                         <Setter Target="ImagePanel.(Grid.Column)" Value="0"/>
                         <Setter Target="ImagePanel.Orientation" Value="Vertical"/>
                     </VisualState.Setters>

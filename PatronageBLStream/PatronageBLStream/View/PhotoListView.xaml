@@ -1,0 +1,96 @@
+﻿<Page
+    x:Class="PatronageBLStream.View.PhotoListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PatronageBLStream.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:storage="using:Windows.Storage"
+    mc:Ignorable="d">
+
+
+    <Page.DataContext>
+        <Binding Source="{StaticResource Locator}" Path="Photos" />
+    </Page.DataContext>
+
+    <Grid x:Name="LayoutRoot" Background="Orange">
+
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="Header" Height="57*" MinHeight="35" />
+            <RowDefinition x:Name="MainGridRow" Height="583*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="MenuPanel" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="GoBack" Command="{Binding BackCommand}" HorizontalAlignment="Left" Background="Orange">
+                <Image x:Name="BackButton" Source="../Assets/Back.png"/>
+            </Button>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel>
+                <GridView x:Name="gv" ItemsSource="{Binding PhotoCollection}" IsItemClickEnabled="False">
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button x:Name="Thumbnail" Command="{Binding DataContext.SelectItemCommand, ElementName=gv}" 
+                                         CommandParameter="{Binding Path=Path}" Background="Orange">
+                                    <Image Source="{Binding Path=Photo}" Height="150" Width="150" />
+                                </Button>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Path=Path}" FontSize="10"/>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapGrid Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
+            </StackPanel>
+        </ScrollViewer>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="VisualStateDesktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="MenuPanel.(Grid.Row)" Value="0" />
+                        <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
+
+                        <!--<Setter Target="Image.Stretch" Value="Fill"/>-->
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="VisualStateTablet">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="548" ></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="MenuPanel.(Grid.Row)" Value="0" />
+                        <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
+
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="VisualStatePhone">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="MenuPanel.(Grid.Row)" Value="0"/>
+                        <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
+
+                    </VisualState.Setters>
+                </VisualState>
+
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+    </Grid>
+</Page>
+    
