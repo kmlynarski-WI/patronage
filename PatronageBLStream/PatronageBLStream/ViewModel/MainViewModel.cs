@@ -152,14 +152,14 @@ namespace PatronageBLStream.ViewModel
 
                 var title = Path.GetFileName(properties.Title);
                 data += ("Title: " + title);
+                var dateTaken = properties.DateTaken;
+                data += ("\tDate taken: " + dateTaken);
                 var width = Convert.ToString(properties.Width);
                 if(width != null)
                     data += ("\nWidth: " + width);
                 var height = Convert.ToString(properties.Height);
                 if(height != null)
                     data += ("\tHeight: " + height);
-                var dateTaken = properties.DateTaken;
-                data += ("\nDate taken: " + dateTaken);
                 var latitude = Convert.ToString(properties.Latitude);
                 if (latitude != null)
                     data += ("\nLatitude: " + latitude);

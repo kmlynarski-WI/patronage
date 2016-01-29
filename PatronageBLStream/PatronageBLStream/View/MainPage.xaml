@@ -32,13 +32,15 @@
         </StackPanel>
         
         <StackPanel x:Name="ImagePanel" Grid.Row="1">
-            <Button x:Name="SwitchImage" Command="{Binding GetNextImageCommand}" Background="Orange">
-                <Image x:Name="Image" Source="{Binding BitmapImageSource, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" />
+            <Button x:Name="SwitchImage" Command="{Binding GetNextImageCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Orange">
+             
+                    <Image x:Name="Image" Source="{Binding BitmapImageSource, UpdateSourceTrigger=PropertyChanged}" Stretch="Uniform" />
+
             </Button>
         </StackPanel>
 
         <StackPanel x:Name="PropertiesePanel" Grid.Row="2" Margin="0,0.333,0,0" VerticalAlignment="Top">
-            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding ImagePropertiesesText, UpdateSourceTrigger=PropertyChanged}" Height="100"/>
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding ImagePropertiesesText, UpdateSourceTrigger=PropertyChanged}" Height="80"/>
         </StackPanel>
 
         <VisualStateManager.VisualStateGroups>
@@ -49,12 +51,7 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="MenuPanel.(Grid.Row)" Value="0" />
-                        <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
-                        <Setter Target="ImagePanel.(Grid.Row)" Value="1"/>
-                        <Setter Target="ImagePanel.(Grid.Column)" Value="0"/>
-                        <Setter Target="ImagePanel.Orientation" Value="Vertical"/>
-                        <Setter Target="Image.Stretch" Value="Fill"/>
+                        <Setter Target="ImagePanel.Orientation" Value="Horizontal"/>
                     </VisualState.Setters>
                 </VisualState>
 
@@ -64,11 +61,8 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="MenuPanel.(Grid.Row)" Value="0" />
-                        <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
-                        <Setter Target="ImagePanel.(Grid.Row)" Value="1"/>
-                        <Setter Target="ImagePanel.(Grid.Column)" Value="0"/>
-                        <Setter Target="ImagePanel.Orientation" Value="Horizontal"/>
+                        <Setter Target="ImagePanel.Orientation" Value="Vertical"/>
+                        <Setter Target="textBlock.FontSize" Value="9.5"/>
                     </VisualState.Setters>
                 </VisualState>
 
@@ -78,11 +72,8 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="MenuPanel.(Grid.Row)" Value="0"/>
-                        <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
-                        <Setter Target="ImagePanel.(Grid.Row)" Value="0"/>
-                        <Setter Target="ImagePanel.(Grid.Column)" Value="0"/>
                         <Setter Target="ImagePanel.Orientation" Value="Vertical"/>
+                        <Setter Target="textBlock.FontSize" Value="8"/>
                     </VisualState.Setters>
                 </VisualState>
 
