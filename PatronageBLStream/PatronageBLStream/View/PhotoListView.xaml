@@ -28,7 +28,7 @@
 
         <ScrollViewer Grid.Row="1">
             <StackPanel>
-                <GridView x:Name="gv" ItemsSource="{Binding PhotoCollection}" IsItemClickEnabled="False">
+                <GridView x:Name="gv" ItemsSource="{Binding PhotoCollection}" IsItemClickEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <GridView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -59,8 +59,6 @@
                     <VisualState.Setters>
                         <Setter Target="MenuPanel.(Grid.Row)" Value="0" />
                         <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
-
-                        <!--<Setter Target="Image.Stretch" Value="Fill"/>-->
                     </VisualState.Setters>
                 </VisualState>
 
@@ -72,7 +70,8 @@
                     <VisualState.Setters>
                         <Setter Target="MenuPanel.(Grid.Row)" Value="0" />
                         <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
-
+                        <Setter Target="MenuPanel.HorizontalAlignment" Value="Center"/>
+                        <Setter Target="MenuPanel.VerticalAlignment" Value="Left" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -84,7 +83,8 @@
                     <VisualState.Setters>
                         <Setter Target="MenuPanel.(Grid.Row)" Value="0"/>
                         <Setter Target="MenuPanel.(Grid.Column)" Value="0"/>
-
+                        <Setter Target="MenuPanel.HorizontalAlignment" Value="Left" />
+                        <Setter Target="MenuPanel.VerticalAlignment" Value="Center" />
                     </VisualState.Setters>
                 </VisualState>
 
